@@ -1,19 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quizapp-deployment
+  name: quiz-app-deployment
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: quizapp
+      app: quiz-app
   template:
     metadata:
       labels:
-        app: quizapp
+        app: quiz-app
     spec:
       containers:
-      - name: quizapp
-        image: shivaji108/quiz-app:kuberimg2
+      - name: quiz-app
+        image: hasikagade123/quiz:hasika1
         ports:
+
         - containerPort: 5000
+
+
+
+
+
+
+
+
