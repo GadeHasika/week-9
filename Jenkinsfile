@@ -13,14 +13,14 @@
         stage('Docker Login') {
             steps {
                 echo "Logging into Docker Hub..."
-                bat 'docker login -u shivaji108 -p Kaveri@1729'
+                bat 'docker login -u hasikagade123 -p Hasika@123'
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-               bat 'docker tag movie-reviewapp:v1 shivaji108/sample:kuberimg2' 
-                bat 'docker push shivaji108/sample:kuberimg2'
+               bat 'docker tag movie-reviewapp:v1 hasikagade123/sample:kuberimg2' 
+                bat 'docker push hasikagade123/sample:kuberimg2'
             }
         }
 
@@ -41,4 +41,5 @@
             echo "Deployment failed. Check Jenkins logs for errors."
         }
     }
+
 }
