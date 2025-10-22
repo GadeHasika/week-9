@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      color: #34495e;
+    }
+    button {
+      display: block;
+      width: 100%;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .score {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 20px;
+    }
+    .correct {
+      color: #27ae60;
+      font-weight: bold;
+    }
+    .wrong {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    .answer {
+      font-style: italic;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Python Flask Quiz</h1>
+
+    {% if not submitted %}
+    <form method="POST">
+      {% for i, q in quiz %}
+      <div class="question">
+        <h3>{{ i + 1 }}. {{ q.question }}</h3>
+        {% for opt in q.options %}
+        <label>
+          <input type="radio" name="q{{ i }}" value="{{ opt }}" required>
+          {{ opt }}
+        </label><br>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <button type="submit">Submit Quiz</button>
+    </form>
+    {% else %}
+      <p class="score">You scored {{ score }} out of {{ total }}!</p>
+      {% for q in quiz %}
+      <div class="question">
+        <h3>{{ loop.index }}. {{ q.question }}</h3>
+        {% if q.is_correct %}
+          <p class="correct">✅ Your answer: {{ q.selected }}</p>
+        {% else %}
+          <p class="wrong">❌ Your answer: {{ q.selected if q.selected else 'No answer' }}</p>
+          <p class="answer">✔ Correct answer: {{ q.correct }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <a href="/"><button>Try Again</button></a>
+    {% endif %}
+  </div>
+</body>
+</html>
