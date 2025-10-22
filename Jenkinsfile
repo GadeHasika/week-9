@@ -6,7 +6,7 @@
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-               bat "docker build -t movie-reviewapp:v1 ."
+               bat "docker build -t quiz-app:v1 ."
             }
         }
 
@@ -19,8 +19,8 @@
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-               bat 'docker tag movie-reviewapp:v1 hasikagade123/sample:kuberimg2' 
-                bat 'docker push hasikagade123/sample:kuberimg2'
+               bat 'docker tag quiz-app:v1 hasikagade123/quiz:hasika1' 
+                bat 'docker push hasikagade123/quiz:hasika1'
             }
         }
 
@@ -35,7 +35,7 @@
 
     post {
         success {
-            echo "Deployment successful! Movie Review App is now live on Kubernetes."
+            echo "Deployment successful! quiz App is now live on Kubernetes."
         }
         failure {
             echo "Deployment failed. Check Jenkins logs for errors."
@@ -43,3 +43,12 @@
     }
 
 }
+
+
+
+
+
+
+
+
+
